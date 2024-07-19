@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Prices in European Countries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Property Prices in European Countries</h2>
+
+<table id="propertyTable">
+    <tr>
+        <th>Country</th>
+        <th>Notes</th>
+    </tr>
+    <tr>
+        <td>Bulgaria</td>
+        <td>Considered one of the cheapest countries in Europe to buy property, especially in rural areas and small towns.</td>
+    </tr>
+    <tr>
+        <td>Romania</td>
+        <td>Offers affordable properties, especially outside the capital Bucharest.</td>
+    </tr>
+    <tr>
+        <td>Hungary</td>
+        <td>Secondary cities like Debrecen and Szeged offer reasonably priced properties.</td>
+    </tr>
+    <tr>
+        <td>Bosnia and Herzegovina</td>
+        <td>Property prices are low compared to other European countries.</td>
+    </tr>
+    <tr>
+        <td>Albania</td>
+        <td>Property prices remain relatively low, especially in coastal cities.</td>
+    </tr>
+    <tr>
+        <td>Serbia</td>
+        <td>Belgrade and other cities offer affordable property options.</td>
+    </tr>
+    <tr>
+        <td>Poland</td>
+        <td>While Warsaw can be expensive, other cities like Krakow and Łódź offer affordable options.</td>
+    </tr>
+    <tr>
+        <td>Latvia</td>
+        <td>Properties in Riga and other cities are reasonably priced.</td>
+    </tr>
+    <tr>
+        <td>Slovakia</td>
+        <td>Apart from Bratislava, you can find reasonably priced properties.</td>
+    </tr>
+    <tr>
+        <td>Croatia</td>
+        <td>Some areas outside the well-known tourist destinations offer good property prices.</td>
+    </tr>
+</table>
+
+<button onclick="copyTable()">Copy</button>
+<button onclick="printTable()">Print</button>
+<button onclick="previewTime()">Preview Current Time</button>
+<button onclick="sendWhatsApp()">Send via WhatsApp</button>
+<button onclick="sendEmail()">Send by Email</button>
+<button onclick="pronounce()">Pronounce</button>
+
+<script>
+    function copyTable() {
+        const table = document.getElementById('propertyTable').outerHTML;
+        navigator.clipboard.writeText(table).then(() => {
+            alert('Table copied to clipboard');
+        });
+    }
+
+    function printTable() {
+        const table = document.getElementById('propertyTable').outerHTML;
+        const newWin = window.open('', '', 'width=800, height=600');
+        newWin.document.write('<html><head><title>Print</title></head><body>' + table + '</body></html>');
+        newWin.document.close();
+        newWin.print();
+    }
+
+    function previewTime() {
+        alert('Current Time: ' + new Date().toLocaleString());
+    }
+
+    function sendWhatsApp() {
+        const text = encodeURIComponent(document.getElementById('propertyTable').outerText);
+        window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+
+    function sendEmail() {
+        const subject = 'Property Prices in European Countries';
+        const body = encodeURIComponent(document.getElementById('propertyTable').outerText);
+        window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+    }
+
+    function pronounce() {
+        const text = document.getElementById('propertyTable').outerText;
+        const utterance = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(utterance);
+    }
+</script>
+
+</body>
+</html>
